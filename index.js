@@ -1,5 +1,6 @@
 import express from "express";
 import ProductController from "./src/controllers/product.controller.js";
+import expressEjsLayouts from "express-ejs-layouts";
 import path from "path";
 
 const PORT = 3000;
@@ -8,6 +9,8 @@ const server = express();
 // setup view engine.
 server.set("view engine", "ejs");
 server.set("views", path.join(path.resolve(), "src", "views"))
+
+server.use(expressEjsLayouts);
 
 //create an instance of product controller.
 const productController = new ProductController();
