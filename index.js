@@ -4,13 +4,8 @@ const PORT = 3000;
 const server = express();
 
 
-server.get("/", (req, res) => {
-  return res.send("Welcome to Inventory App");
-})
+server.use(express.static('src/views'));
 
 server.listen(PORT, () => {
   console.log(`running at http://localhost:${PORT}`);
 })
-
-
-
