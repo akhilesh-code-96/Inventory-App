@@ -9,6 +9,7 @@ const server = express();
 const productController = new ProductController();
 server.get("/", productController.getProduct);
 
+//Middleware.
 server.use(express.static('src/views'));
 
 server.listen(PORT, () => {
