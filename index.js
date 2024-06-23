@@ -2,6 +2,7 @@ import express from "express";
 import ProductController from "./src/controllers/product.controller.js";
 import expressEjsLayouts from "express-ejs-layouts";
 import path from "path";
+import { validationMiddleware } from "./src/middlewares/validate.middleware.js";
 
 const PORT = 3000;
 const server = express();
@@ -19,8 +20,9 @@ server.use(expressEjsLayouts);
 const productController = new ProductController();
 //creating routes for all the functionalities.
 server.get("/", productController.getProduct);
-server.get("/new", productController.getAddForm);
-server.post("/", productController.addNewProduct);
+server.get("/add-product", productController.getAddForm);
+// adding middleware specific to this method.
+server.post('/', validationMiddleware, productController.postAddProduct);
 
 //Middleware.
 server.use(express.static('src/views'));
