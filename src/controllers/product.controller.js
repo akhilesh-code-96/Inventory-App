@@ -13,6 +13,7 @@ export default class ProductController {
 
   postAddProduct(req, res) {
     ProductModel.add(req.body);
+    console.log(req.body);
     let products = ProductModel.get();
     return res.render("products", { products });
   }
