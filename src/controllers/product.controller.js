@@ -1,4 +1,3 @@
-// import path from 'path';
 import ProductModel from "../models/product.model.js";
 
 export default class ProductController {
@@ -8,12 +7,30 @@ export default class ProductController {
   }
 
   getAddForm(req, res) {
-    return res.render("new-product", {errorMessage: null});
+    return res.render("new-product", { errorMessage: null });
   }
 
   postAddProduct(req, res) {
     ProductModel.add(req.body);
-    console.log(req.body);
+    let products = ProductModel.get();
+    return res.render("products", { products });
+  }
+
+  getUpdateProductView(req, res) {
+    const id = req.params.id;
+    const productFound = ProductModel.getById(id);
+    if (productFound) {
+      res.render("update-product", {
+        product: productFound,
+        errorMessage: null,
+      });
+    } else {
+      res.status(401).send("Product Not Found");
+    }
+  }
+
+  postUpdateProductResponse(req, res) {
+    ProductModel.update(req.body);
     let products = ProductModel.get();
     return res.render("products", { products });
   }

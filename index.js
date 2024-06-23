@@ -21,6 +21,8 @@ const productController = new ProductController();
 //creating routes for all the functionalities.
 server.get("/", productController.getProduct);
 server.get("/add-product", productController.getAddForm);
+server.get("/update-product/:id", productController.getUpdateProductView);
+server.post("/", productController.postUpdateProductResponse);
 // adding middleware specific to this method.
 server.post("/", validateRequest, productController.postAddProduct);
 
