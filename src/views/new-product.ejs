@@ -1,5 +1,11 @@
 <!-- views/add-product.ejs -->
 
+<% if(errorMessage) { %>
+    <div class="alert alert-danger" role="alert">
+        <%= errorMessage %>
+    </div>
+<% } %>
+
 <h1 class="mt-5 mb-4">Add New Product</h1>
 <form action="/" method="post">
     <div class="mb-3">
