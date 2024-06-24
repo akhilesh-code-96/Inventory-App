@@ -22,7 +22,7 @@ export default class ProductModel {
   }
 
   static delete(id) {
-    const index = products.findIndex((p) => p.id === id);
+    const index = products.findIndex((p) => p.id === parseInt(id));
     products.splice(index, 1);
   }
 
@@ -32,7 +32,7 @@ export default class ProductModel {
   }
 
   static getById(id) {
-    return products.find((p) => p.id == id);
+    return products.find((p) => p.id === parseInt(id));
   }
 }
 

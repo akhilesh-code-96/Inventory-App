@@ -7,6 +7,8 @@ import validateRequest from "./src/middlewares/validation.middleware.js";
 const PORT = 3000;
 const server = express();
 
+server.use(express.static('public'));
+
 // parse form data.
 server.use(express.urlencoded({ extended: true }));
 
@@ -23,7 +25,7 @@ server.get("/", productController.getProduct);
 server.get("/add-product", productController.getAddForm);
 server.get("/update-product/:id", productController.getUpdateProductView);
 server.post("/", productController.postUpdateProductResponse);
-server.get("/delete-product/:id", productController.deleteProduct);
+server.post("/delete-product/:id", productController.deleteProduct);
 // adding middleware specific to this method.
 server.post("/", validateRequest, productController.postAddProduct);
 
