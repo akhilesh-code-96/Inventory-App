@@ -23,6 +23,7 @@ server.get("/", productController.getProduct);
 server.get("/add-product", productController.getAddForm);
 server.get("/update-product/:id", productController.getUpdateProductView);
 server.post("/", productController.postUpdateProductResponse);
+server.get("/delete-product/:id", productController.deleteProduct);
 // adding middleware specific to this method.
 server.post("/", validateRequest, productController.postAddProduct);
 
