@@ -1,4 +1,9 @@
 .header {
-  background-color: darkred;
+  background-color: rgb(112, 101, 101);
   color: lightcyan;
+  border-radius: 5px;
+  padding: 5px;
+  /* height: 25px; */
+  font-size: x-large;
+  /* text-align: center; */
 }
