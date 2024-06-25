@@ -3,6 +3,7 @@ import ProductController from "./src/controllers/product.controller.js";
 import expressEjsLayouts from "express-ejs-layouts";
 import path from "path";
 import validateRequest from "./src/middlewares/validation.middleware.js";
+import { uploadFile } from "./src/middlewares/file-upload.middleware.js";
 
 const PORT = 3000;
 const server = express();
@@ -27,7 +28,7 @@ server.get("/update-product/:id", productController.getUpdateProductView);
 server.post("/", productController.postUpdateProductResponse);
 server.post("/delete-product/:id", productController.deleteProduct);
 // adding middleware specific to this method.
-server.post("/", validateRequest, productController.postAddProduct);
+server.post("/upload", uploadFile.single("imageUrl"), validateRequest, productController.postAddProduct);
 
 //Middleware.
 server.use(express.static("src/views"));

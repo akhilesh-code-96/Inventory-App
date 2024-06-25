@@ -11,7 +11,10 @@ export default class ProductController {
   }
 
   postAddProduct(req, res) {
-    ProductModel.add(req.body);
+    // console.log(req.body);
+    const { name, desc, price } = req.body;
+    const imageUrl = "images/" + req.file.filename;
+    ProductModel.add(name, desc, price, imageUrl);
     let products = ProductModel.get();
     return res.render("products", { products });
   }
@@ -44,7 +47,7 @@ export default class ProductController {
     }
     ProductModel.delete(id);
     let products = ProductModel.get();
-    // res.render("products", { products });
-    res.redirect("/");
+    res.render("products", { products });
+    // res.redirect("/");
   }
 }
