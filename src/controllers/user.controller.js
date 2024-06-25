@@ -11,14 +11,14 @@ export default class UserController {
   }
 
   postRegister(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     const { name, email, password } = req.body;
     UserModel.add(name, email, password);
     res.render("login", { errorMessage: null });
   }
 
   postLogin(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     const { email, password } = req.body;
     const user = UserModel.isValidUser(email, password);
     if (!user) {

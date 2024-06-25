@@ -3,11 +3,11 @@ import ProductModel from "../models/product.model.js";
 export default class ProductController {
   getProduct(req, res) {
     let products = ProductModel.get();
-    res.render("products", { products: products, userEmail: req.session.userEmail });
+    res.render("products", { products, userEmail: req.session.userEmail });
   }
 
   getAddForm(req, res) {
-    return res.render("new-product", { errorMessage: null });
+    return res.render("new-product", { errorMessage: null, userEmail: req.session.userEmail });
   }
 
   postAddProduct(req, res) {
@@ -34,9 +34,10 @@ export default class ProductController {
   }
 
   postUpdateProductResponse(req, res) {
+    console.log(req.body);
     ProductModel.update(req.body);
     let products = ProductModel.get();
-    return res.render("products", { products, userEmail: req.session.userEmail });
+    return res.redirect("/");
   }
 
   deleteProduct(req, res) {
@@ -48,7 +49,7 @@ export default class ProductController {
     }
     ProductModel.delete(id);
     let products = ProductModel.get();
-    res.render("products", { products });
-    // res.redirect("/");
+    res.render("products", { products, userEmail: req.session.userEmail });
+    // res.redirect("/", { products });
   }
 }

@@ -27,8 +27,14 @@ export default class ProductModel {
   }
 
   static update(productObj) {
-    const index = products.findIndex((p) => p.id == productObj.id);
-    products[index] = productObj;
+    const index = products.findIndex((p) => p.id === parseInt(productObj.id));
+    products[index] = {
+      ...products[index],
+      name: productObj.name,
+      desc: productObj.desc,
+      price: productObj.price,
+      imageUrl: productObj.imageUrl,
+    };
   }
 
   static getById(id) {
