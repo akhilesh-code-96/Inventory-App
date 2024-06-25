@@ -3,7 +3,7 @@ import ProductModel from "../models/product.model.js";
 export default class ProductController {
   getProduct(req, res) {
     let products = ProductModel.get();
-    res.render("products", { products: products });
+    res.render("products", { products: products, userEmail: req.session.userEmail });
   }
 
   getAddForm(req, res) {
@@ -16,7 +16,7 @@ export default class ProductController {
     const imageUrl = "images/" + req.file.filename;
     ProductModel.add(name, desc, price, imageUrl);
     let products = ProductModel.get();
-    return res.render("products", { products });
+    return res.render("products", { products, userEmail: req.session.userEmail });
   }
 
   getUpdateProductView(req, res) {
@@ -26,6 +26,7 @@ export default class ProductController {
       res.render("update-product", {
         product: productFound,
         errorMessage: null,
+        userEmail: req.session.userEmail
       });
     } else {
       res.status(401).send("Product Not Found");
@@ -35,7 +36,7 @@ export default class ProductController {
   postUpdateProductResponse(req, res) {
     ProductModel.update(req.body);
     let products = ProductModel.get();
-    return res.render("products", { products });
+    return res.render("products", { products, userEmail: req.session.userEmail });
   }
 
   deleteProduct(req, res) {

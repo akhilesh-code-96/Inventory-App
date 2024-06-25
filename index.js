@@ -40,6 +40,7 @@ server.get("/register", userController.getRegister);
 server.get("/login", userController.getLogin);
 server.post("/register", userController.postRegister);
 server.post("/login", userController.postLogin);
+server.get("/logout", userController.logout);
 
 //create an instance of product controller.
 const productController = new ProductController();
